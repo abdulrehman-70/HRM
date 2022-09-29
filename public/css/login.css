@@ -1,0 +1,24 @@
+@import url('https://fonts.googleapis.com/css?family=Muli&display=swap');
+@import url('https://fonts.googleapis.com/css?family=Quicksand&display=swap');
+
+.loginButton{
+    background-color:rgb(115, 193, 230);
+    border:1px solid rgb(115, 193, 230);
+    font-family: 'Muli';
+}
+.loginButton:hover{
+    background-color:rgb(81, 198, 252);
+    border:1px solid rgb(51, 183, 245)
+
+}
+
+.placeHolder::placeholder{
+    font-size: 13px;
+    
+}
+.card{
+    box-shadow: 3px 4px 21px -4px rgba(0,0,0,0.52);
+-webkit-box-shadow: 3px 4px 21px -4px rgba(0,0,0,0.52);
+-moz-box-shadow: 3px 4px 21px -4px rgba(0,0,0,0.52);
+}
+

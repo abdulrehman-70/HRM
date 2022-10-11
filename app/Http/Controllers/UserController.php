@@ -15,7 +15,8 @@ class UserController extends Controller
     {
        $data =  Attendance::create([
             'user_id'=>Auth::user()->id,
-            'start_time'=> Carbon::now()
+            'start_time'=> Carbon::now(),
+            'availability'=>1
         ]);
         return redirect('/user/dashboard');
     }
@@ -28,7 +29,16 @@ class UserController extends Controller
 
     }
 
-    public function getUser(){
-
+    public function test(){
+        $attendances = Attendance::all();
+        foreach($attendances as $attendance){
+            $attendances = Attendance::where('availability', 0)->get();
+          return $attendances;
+        }
     }
+
+
+
+
+
 }

@@ -10,6 +10,7 @@
     <script src="https://cdn.jsdelivr.net/npm/fullcalendar@5.11.3/main.min.js" integrity="sha256-7PzqE1MyWa/IV5vZumk1CVO6OQbaJE4ns7vmxuUP/7g=" crossorigin="anonymous"></script></head>
 <body>
     <div id='calendar'></div>
+
 <!--
     <script>
          document.addEventListener('DOMContentLoaded', function() {
@@ -40,42 +41,19 @@
         <script>
         document.addEventListener('DOMContentLoaded', function() {
         var calendarEl = document.getElementById('calendar');
-        var user = '<?php echo @$user; ?>';
-        user= JSON.parse(user);
-        console.log('user:' ,user);
+        var attendances = '<?php echo @$attendances; ?>';
+        attendances= JSON.parse(attendances);
+        console.log('attendances:' ,attendances);
 
-
-
-        var result = user.map(person => {
+        var result = attendances.map(person => {
             return {
-                title: person.availability==0 ? 'Absent' :'Present' ,
+                title: person.availability==0 ? person.user.name +'-'+'Absent'
+                :person.user.name+'-'+'Present' ,
                 start:person.created_at,
                 end:person.end_time,
-                color:person.availability==0?'red' : 'green',
+                color:person.availability==0 ?'red' : 'green',
             }
         });
-
-
-        var absent = '<?php echo @$absent; ?>';
-        absent= JSON.parse(absent);
-
-
-
-
-        let weArr = [
-            {
-                daysOfWeek: [0,6], //Sundays and saturdays
-                rendering:"background",
-                color: "red",
-                overLap: false,
-                allDay: true,
-                title:'Off',
-            }
-
-        ]
-
-        result = [...result, ...weArr];
-        console.log(result)
 
         var calendar = new FullCalendar.Calendar(calendarEl, {
             initialView: 'dayGridMonth',
@@ -85,9 +63,6 @@
         calendar.render();
       });
 
-
-
-
       var dt = new Date();
         // if(dt.getDay() == 6 || dt.getDay() == 0)
         // {
@@ -96,8 +71,6 @@
         // else{
         //     console.log('mpt weekend')
         // }
-
-
         </script>
 </body>
 </html>

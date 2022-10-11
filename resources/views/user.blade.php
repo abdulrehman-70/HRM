@@ -42,7 +42,7 @@
           </button>
           <div class="search-field d-none d-xl-block">
             <form class="d-flex align-items-center h-100" action="#">
-         
+
             </form>
           </div>
           <ul class="navbar-nav navbar-nav-right">
@@ -51,7 +51,7 @@
               <div class="dropdown-menu navbar-dropdown" aria-labelledby="reportDropdown">
                 <a class="dropdown-item" href="#">
                   <i class="mdi mdi-file-pdf mr-2"></i>PDF </a>
-           
+
               </div>
             </li>
             <li class="nav-item nav-profile dropdown">
@@ -68,7 +68,7 @@
                   <img class="img-avatar img-avatar48 img-avatar-thumb" src="/assets/images/faces/face28.png" alt="">
                 </div>
                 <div class="p-2">
-               
+
                   <a class="dropdown-item py-1 d-flex align-items-center justify-content-between" href="#">
                     <span>Log Out</span>
                     <a href="/logout"><i class="mdi mdi-logout ml-1"></i></a>
@@ -127,8 +127,8 @@
                 @if (!$todayAttendance)
                 <div class="dropdown ml-0 ml-md-4 mt-2 mt-lg-0">
                     <form method="POST" action="/check-in">
-                      @csrf
-                    <button class="btn bg-success text-white  p-3 d-flex align-items-center" type="submit" id="dropdownMenuButton1" 
+                     @csrf
+                    <button class="btn bg-success text-white  p-3 d-flex align-items-center" type="submit" id="dropdownMenuButton1"
                      aria-haspopup="true" aria-expanded="false"> Check in
                     </button>
                   </form>
@@ -138,7 +138,7 @@
                          <div class="dropdown ml-0 ml-md-4 mt-2 mt-lg-0 mr-5">
                           <form method="POST" action="/check-out">
                             @csrf
-                          <button class="btn bg-danger text-white  p-3 d-flex align-items-center" type="submit" id="dropdownMenuButton1" 
+                          <button class="btn bg-danger text-white  p-3 d-flex align-items-center" type="submit" id="dropdownMenuButton1"
                              aria-haspopup="true" aria-expanded="false" > Check out
                           </button>
                         </form>
@@ -148,8 +148,8 @@
                 <div class="dropdown ml-0 ml-md-4 mt-2 mt-lg-0">
                  {{-- clock --}}
                  <div class="dropdown ml-0 ml-md-4 mt-2 mt-lg-0">
-                  <button class="btn bg-white  p-3 d-flex align-items-center" type="button" id="dropdownMenuButton1" 
-                   aria-haspopup="true" aria-expanded="false"> 
+                  <button class="btn bg-white  p-3 d-flex align-items-center" type="button" id="dropdownMenuButton1"
+                   aria-haspopup="true" aria-expanded="false">
                  <div id="clock"></div>
 
                 </button>
@@ -159,7 +159,7 @@
                 </div>
                 </div>
                 <div class="dropdown ml-0 ml-md-4 mt-2 mt-lg-0">
-                  <button class="btn bg-white  p-3 d-flex align-items-center" type="button" id="dropdownMenuButton1" 
+                  <button class="btn bg-white  p-3 d-flex align-items-center" type="button" id="dropdownMenuButton1"
                    aria-haspopup="true" aria-expanded="false"> <i class="mdi mdi-calendar mr-1"></i>
                    {{ date('Y-m-d') }}
                 </button>
@@ -249,13 +249,13 @@
   <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
   <script src="https://cdnjs.cloudflare.com/ajax/libs/timer.jquery/0.7.0/timer.jquery.js"></script>
   <script>
-      console.log('amdr'); 
+      console.log('amdr');
       var startTime = '<?php echo @$todayAttendance->start_time; ?>';
      console.log('time:',startTime)
     //     startDate = new Date(Date.parse(startTime))
     //     currentDate = new Date($.now());
     //     var difference = (currentDate.getTime() - startDate.getTime()) / 1000;
-    
+
     //   $('#clock').timer({
     //     seconds:difference
     // });

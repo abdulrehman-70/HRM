@@ -43,7 +43,7 @@
                                     </div>
                                     <input type="password" name ="password" class="form-control placeHolder" id="inlineFormInputGroup" placeholder="Password">
                                 </div>
-                            <button type="submit" class="mt-5 mb-5 btn btn-primary btn-block loginButton" 
+                            <button type="submit" class="mt-5 mb-5 btn btn-primary btn-block loginButton"
                             >
                             Login</button>
                           </form>
@@ -52,8 +52,8 @@
              </div>
         </div>
      </div>
-     
-    
+
+
 
 
 

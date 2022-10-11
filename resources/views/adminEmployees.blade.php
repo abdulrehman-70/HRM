@@ -34,7 +34,7 @@
           </button>
           <div class="search-field d-none d-xl-block">
             <form class="d-flex align-items-center h-100" action="#">
-         
+
             </form>
           </div>
           <ul class="navbar-nav navbar-nav-right">
@@ -43,7 +43,7 @@
               <div class="dropdown-menu navbar-dropdown" aria-labelledby="reportDropdown">
                 <a class="dropdown-item" href="#">
                   <i class="mdi mdi-file-pdf mr-2"></i>PDF </a>
-           
+
               </div>
             </li>
             <li class="nav-item nav-profile dropdown">
@@ -60,7 +60,7 @@
                   <img class="img-avatar img-avatar48 img-avatar-thumb" src="/assets/images/faces/face28.png" alt="">
                 </div>
                 <div class="p-2">
-                 
+
                   <a class="dropdown-item py-1 d-flex align-items-center justify-content-between" href="/logout">
                     <span>Log Out</span>
                     <i class="mdi mdi-logout ml-1"></i>
@@ -78,44 +78,56 @@
       <div class="container-fluid page-body-wrapper">
         <!-- partial:partials/_sidebar.html -->
         <nav class="sidebar sidebar-offcanvas" id="sidebar">
-          <ul class="nav mt-5">
-            <li class="nav-item">
-              <a class="nav-link" href="/admin/dashboard">
-                <span class="icon-bg"><i class="mdi mdi-cube menu-icon"></i></span>
-                <span class="menu-title">Dashboard</span>
-              </a>
-            </li>
-            <li class="nav-item">
-              <a class="nav-link" href="/admin/employees">
-                <span class="icon-bg"><i class="mdi mdi-cube menu-icon"></i></span>
-                <span class="menu-title">Employees</span>
-              </a>
-            </li>
-            <li class="nav-item sidebar-user-actions">
-              <div class="user-details">
-                <div class="d-flex justify-content-between align-items-center">
-                  <div>
-                    <div class="d-flex align-items-center">
-                      <div class="sidebar-profile-img">
-                        <img src="/assets/images/faces/face28.png" alt="image">
-                      </div>
-                      <div class="sidebar-profile-text">
-                        <p class="mb-1">{{Auth::user()->name}}</p>
+            <ul class="nav mt-5">
+              <li class="nav-item">
+                <a class="nav-link" href="/admin/dashboard">
+                  <span class="icon-bg"><i class="mdi mdi-cube menu-icon"></i></span>
+                  <span class="menu-title">Dashboard</span>
+                </a>
+              </li>
+              <li class="nav-item">
+                <a class="nav-link" href="/admin/employees">
+                  <span class="icon-bg"><i class="mdi mdi-cube menu-icon"></i></span>
+                  <span class="menu-title">Employees</span>
+                </a>
+              </li>
+              <li class="nav-item">
+                  <a class="nav-link" href="/admin/add">
+                    <span class="icon-bg"><i class="mdi mdi-format-list-bulleted menu-icon"></i></span>
+                    <span class="menu-title">Add User</span>
+                  </a>
+                </li>
+                <li class="nav-item">
+                  <a class="nav-link" href="/admin/calender">
+                    <span class="icon-bg"><i class="mdi mdi-table-large menu-icon"></i></span>
+                    <span class="menu-title">Users Calender</span>
+                  </a>
+                </li>
+              <li class="nav-item sidebar-user-actions">
+                <div class="user-details">
+                  <div class="d-flex justify-content-between align-items-center">
+                    <div>
+                      <div class="d-flex align-items-center">
+                        <div class="sidebar-profile-img">
+                          <img src="/assets/images/faces/face28.png" alt="image">
+                        </div>
+                        <div class="sidebar-profile-text">
+                          <p class="mb-1">{{@Auth::user()->name}}</p>
+                        </div>
                       </div>
                     </div>
+                    <!-- <div class="badge badge-danger">3</div> -->
                   </div>
-                  <!-- <div class="badge badge-danger">3</div> -->
                 </div>
-              </div>
-            </li>
-            <li class="nav-item sidebar-user-actions">
-              <div class="sidebar-user-menu">
-                <a href="/logout" class="nav-link"><i class="mdi mdi-logout menu-icon"></i>
-                  <span class="menu-title">Log Out</span></a>
-              </div>
-            </li>
-          </ul>
-        </nav>
+              </li>
+              <li class="nav-item sidebar-user-actions">
+                <div class="sidebar-user-menu">
+                  <a href="/logout" class="nav-link"><i class="mdi mdi-logout menu-icon"></i>
+                    <span class="menu-title">Log Out</span></a>
+                </div>
+              </li>
+            </ul>
+          </nav>
         <!-- partial -->
         <div class="main-panel">
           <div class="content-wrapper">
@@ -127,9 +139,9 @@
                     {{ date('Y-m-d') }}
                   </button>
                   <div class="dropdown-menu dropdown-menu-right" aria-labelledby="dropdownMenuButton1">
-                    
 
-                    
+
+
                   </div>
                 </div>
               </div>
@@ -141,7 +153,7 @@
                     <li class="nav-item">
                       <a class="nav-link" id="home-tab" data-toggle="tab" href="#" role="tab" aria-selected="true">Total Employees</a>
                     </li>
-                  
+
                   </ul>
                   <div class="d-md-block d-none">
                   </div>
@@ -164,7 +176,7 @@
                               <tr>
                                 @foreach ($users as $key=>$user)
                                 <th scope="row"> {{$key+1}} </th>
-                                <th scope="row"> {{$user->name}} </th>
+                                <th scope="row"> <a href="/calendar-event/{{$user->id}}">{{$user->name}} </a></th>
                                 <td>{{$user->email}}</td>
                                 <td></td>
                               </tr>
@@ -217,7 +229,7 @@
         startDate = new Date(Date.parse(startTime))
         currentDate = new Date($.now());
         var difference = (currentDate.getTime() - startDate.getTime()) / 1000;
-    
+
       $('#clock').timer({
         seconds:difference
     });

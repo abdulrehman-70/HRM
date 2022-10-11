@@ -32,7 +32,7 @@
         calendar.render();
       });
 
-    </script> 
+    </script>
 
 
 
@@ -51,7 +51,7 @@
           </button>
           <div class="search-field d-none d-xl-block">
             <form class="d-flex align-items-center h-100" action="#">
-         
+
             </form>
           </div>
           <ul class="navbar-nav navbar-nav-right">
@@ -60,7 +60,6 @@
               <div class="dropdown-menu navbar-dropdown" aria-labelledby="reportDropdown">
                 <a class="dropdown-item" href="#">
                   <i class="mdi mdi-file-pdf mr-2"></i>PDF </a>
-           
               </div>
             </li>
             <li class="nav-item nav-profile dropdown">
@@ -77,7 +76,7 @@
                   <img class="img-avatar img-avatar48 img-avatar-thumb" src="/assets/images/faces/face28.png" alt="">
                 </div>
                 <div class="p-2">
-                 
+
                   <a class="dropdown-item py-1 d-flex align-items-center justify-content-between" href="/logout">
                     <span>Log Out</span>
                     <i class="mdi mdi-logout ml-1"></i>
@@ -108,6 +107,18 @@
                 <span class="menu-title">Employees</span>
               </a>
             </li>
+            <li class="nav-item">
+                <a class="nav-link" href="/admin/add">
+                  <span class="icon-bg"><i class="mdi mdi-format-list-bulleted menu-icon"></i></span>
+                  <span class="menu-title">Add User</span>
+                </a>
+              </li>
+              <li class="nav-item">
+                <a class="nav-link" href="/admin/calender">
+                  <span class="icon-bg"><i class="mdi mdi-table-large menu-icon"></i></span>
+                  <span class="menu-title">Users Calender</span>
+                </a>
+              </li>
             <li class="nav-item sidebar-user-actions">
               <div class="user-details">
                 <div class="d-flex justify-content-between align-items-center">
@@ -144,14 +155,14 @@
                     {{ date('Y-m-d') }}
                   </button>
                   <div class="dropdown-menu dropdown-menu-right" aria-labelledby="dropdownMenuButton1">
-                    
 
-                    
+
+
                   </div>
                 </div>
               </div>
             </div>
-          
+
             <div class="row">
               <div class="col-md-12 col-sm-12">
                 <div class="d-sm-flex justify-content-between align-items-center transaparent-tab-border {">
@@ -182,7 +193,7 @@
                               <tr>
                                 @foreach ($users as $key1=>$user)
                                 <th scope="row"> {{$key1+1}} </th>
-                                <td><a href="/calendar-event"> {{$user->name}} </a> </td>
+                                <td><a href="/calendar-event/{{$user->id}}"> {{$user->name}} </a> </td>
                                 <td>{{@$user['today_attendance']['start_time']}}</td>
                                 <td>{{@$user['today_attendance']['end_time']}}</td>
                               </tr>
@@ -236,7 +247,7 @@
         startDate = new Date(Date.parse(startTime))
         currentDate = new Date($.now());
         var difference = (currentDate.getTime() - startDate.getTime()) / 1000;
-    
+
       $('#clock').timer({
         seconds:difference
     });

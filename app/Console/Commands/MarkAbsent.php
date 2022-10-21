@@ -47,11 +47,17 @@ class MarkAbsent extends Command
               if($todayAttendance){
             }
               else{
-                Attendance::create([
-                    'user_id'=>$user->id,
-                    'availability'=>0,
-                    'date'=>Carbon::yesterday()
-                ]);
+                if(Carbon::now()->isWeekend())
+                {
+
+                }
+                else{
+                    Attendance::create([
+                        'user_id'=>$user->id,
+                        'availability'=>0,
+                        'date'=>Carbon::yesterday()
+                    ]);
+                }
               }
         }
 

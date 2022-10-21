@@ -55,4 +55,8 @@ class User extends Authenticatable
     {
         return $this->hasMany(Attendance::class);
     }
+    public function leaveApplications() {
+        return $this->belongsTo(User::class);
+    }
+
 }

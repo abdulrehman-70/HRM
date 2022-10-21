@@ -27,17 +27,18 @@ class RegisterUserRequest extends FormRequest
         'name'=>'required',
         'email'=>'required|email|unique:users,email',
         'password'=>'required| min:7| max:14',
-        'email'=>'required',
-        // 'gender' => 'in:male,female',
-        'date_of_birth'=>'required',
+        'gender' => 'in:Male,Female',
+        'date_of_birth'=>'required|before:today',
         'date_of_joining'=>'required',
-        'image'=>'required',
+        'image'=>'required|mimes:jpeg,png,jpg|max:2048',
+        // 'image'=>'required',
+
         'address'=>'required',
-        'designation'=>'required',
-        'salary'=>'required',
-        'phone_number'=>'required',
-        'emergency_contact_name'=>'required',
-        'emergency_phone_number'=>'required',
+        'designation'=>'required|exists:designations,name',
+        'salary'=>'required|numeric',
+        'phone_number'=>'required|string',
+        'emergency_contact_name'=>'required|string',
+        'emergency_phone_number'=>'required|string',
     ];
     }
 }

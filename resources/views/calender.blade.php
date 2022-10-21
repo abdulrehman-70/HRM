@@ -60,8 +60,6 @@
         absent= JSON.parse(absent);
 
 
-
-
         let weArr = [
             {
                 daysOfWeek: [0,6], //Sundays and saturdays

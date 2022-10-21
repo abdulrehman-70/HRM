@@ -35,7 +35,7 @@
                                   <div class="input-group-prepend">
                                     <div class="input-group-text" style="color:rgb(115, 193, 230)"><i class="bi bi-envelope-fill"></i></div>
                                   </div>
-                                  <input type="email" class="form-control placeHolder" name="email" id="inlineFormInputGroup" placeholder="Email">
+                                  <input type="email" class="form-control placeHolder" name="email" value="{{old('email')}}" id="inlineFormInputGroup" placeholder="Email">
                                 </div>
                                 <div class="input-group mt-4">
                                     <div class="input-group-prepend">

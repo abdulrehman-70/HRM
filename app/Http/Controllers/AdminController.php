@@ -19,7 +19,7 @@ class AdminController extends Controller
         $data= $request->all();
         $data['password'] = Hash::make($request->password);
         $user = User::create($data);
-        $user->assignRole('employee');
+        $user->assignRole('hr');
         return redirect('/admin/dashboard')->with(['success'=>'Employee has been added successfully']);
     }
     public function submitResponse(SubmitResponseRequest $request){
@@ -33,10 +33,8 @@ class AdminController extends Controller
         if($leaveRequest->status=='approved')
         {
         $details = [
-
             'title' => 'codartTechnologies.com',
             'body' => 'Your leave have been approved.'
-
         ];
         }
         if($leaveRequest->status=='rejected')
@@ -45,7 +43,6 @@ class AdminController extends Controller
 
             'title' => 'codartTechnologies.com',
             'body' => 'Your leave have been rejected due to, '.$leaveRequest->response
-
         ];
         }
 

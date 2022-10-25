@@ -36,7 +36,7 @@ Route::group(['middleware' => 'auth'], function () {
          return view('admin',['users'=>$users]);
     });
 
-Route::group(['middleware' => 'admin'], function () {
+Route::group(['middleware' => 'AdminAndHrMiddleware'], function () {
 
     //Admin
 
@@ -54,6 +54,12 @@ Route::group(['middleware' => 'admin'], function () {
         $users = User::all();
         $attendances = Attendance::with('user')->get();
         return view('adminCalender', ['users'=>$users,'attendances'=>$attendances]);
+    });
+
+    //salary
+    Route::get('/salary/slip', function () {
+        $users = User::all();
+        return view('salarySlip',['users'=>$users]);
     });
 
     Route::post('/user/add', [AdminController::class,'addUser']);
@@ -197,13 +203,6 @@ Route::get('/user/request/check', function (){
         'rejectedLeaves'=>$rejectedLeaves
     ]);
 });
-
-
-
-
-
-
-
 
 
 Route::get('/testing', function(){

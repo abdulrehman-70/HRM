@@ -34,11 +34,14 @@
       </div>
       @endif
   </div>
+  @if(Auth::user()->hasRole('admin'))
+
       <div class="mt-4">
               <a href="/admin/add"> <button type="submit" class="btn btn-primary mr-2" style="background-color:
                   rgb(32, 185, 58);border:1px solid  rgb(32, 185, 58) ">Add User</button>
               </a>
           </div>
+  @endif
           <div class="tab-content tab-transparent-content">
             <div class="tab-pane fade show active" id="business-1" role="tabpanel" aria-labelledby="business-tab">
               <div class="row d-flex justify-content-center">
@@ -51,7 +54,9 @@
                           <th scope="col">#</th>
                           <th scope="col">Name</th>
                           <th scope="col">Email</th>
+                          @if(Auth::user()->hasRole('admin'))
                           <th scope="col">Action</th>
+                          @endif
                         </tr>
                       </thead>
                       <tbody>
@@ -60,6 +65,7 @@
                           <th scope="row"> {{$key+1}} </th>
                           <th scope="row"> <a href="/calendar-event/{{$user->id}}">{{$user->name}} </a></th>
                           <td>{{$user->email}}</td>
+                          @if(Auth::user()->hasRole('admin'))
                           <td>
                           <div class="d-flex justify-content-center">
                               <a href="/user/edit/{{$user->id}}"><i class="bi bi-pencil-square" style="color:rgb(27, 216, 27)"></i></a>
@@ -70,6 +76,8 @@
                               </form>
                           </div>
                           </td>
+                          @endif
+
                         </tr>
                    @endforeach
                       </tbody>

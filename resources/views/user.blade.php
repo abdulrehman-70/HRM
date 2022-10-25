@@ -21,7 +21,7 @@
                    <div class="dropdown ml-0 ml-md-4 mt-2 mt-lg-0 mr-5">
                     <form method="POST" action="/check-out">
                       @csrf
-                    <button class="btn bg-danger text-white  p-3 d-flex align-items-center" type="submit" id="dropdownMenuButton1"
+                    <button class="btn bg-danger text-white  mt-3 p-3 d-flex align-items-center" type="submit" id="dropdownMenuButton1"
                        aria-haspopup="true" aria-expanded="false" > Check out
                     </button>
                   </form>

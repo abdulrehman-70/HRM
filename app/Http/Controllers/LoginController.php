@@ -14,7 +14,7 @@ class LoginController extends Controller
         $credentials = ['email' => $request->email, 'password' => $request->password];
         if(Auth::attempt($credentials))
         {
-            if($request->email =='admin@test.com' && $request->password == 'admin123')
+            if(Auth::user()->hasRole('admin'))
             {
                 return redirect('/admin/dashboard');
             }

@@ -3,10 +3,12 @@
 use App\Http\Controllers\AdminController;
 use App\Http\Controllers\CalenderController;
 use App\Http\Controllers\LoginController;
+use App\Http\Controllers\PDFController;
 use App\Http\Controllers\UserController;
 use App\Models\Attendance;
 use App\Models\Designation;
 use App\Models\LeaveApplication;
+use App\Models\SalarySlip;
 use App\Models\User;
 use Carbon\Carbon;
 use Illuminate\Support\Facades\Auth;
@@ -59,8 +61,50 @@ Route::group(['middleware' => 'AdminAndHrMiddleware'], function () {
     //salary
     Route::get('/salary/slip', function () {
         $users = User::all();
+        foreach($users as $user)
+        {
+            $user->name = ucwords($user->name);
+        }
         return view('salarySlip',['users'=>$users]);
     });
+
+    Route::get('/salary/slip-generate', function () {
+        $users = User::all();
+        foreach($users as $user)
+        {
+            $user->name = ucwords($user->name);
+        }
+        return view('admin.generateSalarySlip',['users'=>$users]);
+    });
+
+    Route::get('/user/{id}/slips', function ($id) {
+        $salarySlips = SalarySlip::where('user_id',$id)->get();
+
+        $user = User::find($id) ;
+        return view('admin.employeeSalarySlips',['salarySlips'=>$salarySlips,'user'=>$user]);
+
+    });
+    Route::get('/user/{id}/{salary_slip_id}/slip', function ($user_id,$salary_slip_id) {
+
+        $salarySlip = SalarySlip::where('id',$salary_slip_id)->first();
+        $user = User::where('id',$salarySlip->user_id)->first();
+        return view('admin.printSalarySlip',['salarySlip'=>$salarySlip,'user'=>$user]);
+
+    });
+    Route::get('/teams', function () {
+        $users = User::all();
+
+        return view('team.teams',['users'=>$users]);
+    });
+    Route::get('/team/create', function () {
+        $users = User::all();
+        return view('team.addTeam',['users'=>$users]);
+    });
+    Route::post('/team-create',[AdminController::class,'createTeam']);
+
+
+
+    Route::post('/salary/slip/generate',[AdminController::class,'generateSalarySlip']);
 
     Route::post('/user/add', [AdminController::class,'addUser']);
     Route::get('/user/edit/{id}', [AdminController::class,'editUser']);
@@ -99,6 +143,12 @@ Route::group(['middleware' => 'AdminAndHrMiddleware'], function () {
     });
     Route::post('/admin/request/response',[AdminController::class,'submitResponse']);
 
+
+
+    //pdf
+    Route::get('generate-pdf', [PDFController::class, 'generatePDF']);
+
+
         //Full calender
     Route::get('calendar-event/{id}', [CalenderController::class, 'index']);
     Route::post('calendar-crud-ajax', [CalenderController::class, 'calendarEvents']);
@@ -134,15 +184,14 @@ Route::group(['middleware' => 'user'], function () {
     });
 
 
-
 });
 
 
-
-
-
-
 Route::get('/', function () {
+    if(Auth::user())
+    {
+        return redirect('/user/dashboard');
+    }
     return view('login');
 })->name('login');
 
@@ -205,11 +254,9 @@ Route::get('/user/request/check', function (){
 });
 
 
-Route::get('/testing', function(){
 
-    return view('admin');
-   return view('applayout');
 
-   $user = User::where('id',8)->first();
-   return $user->getRoleNames();
+Route::get('/testing', function () {
+    return view('test');
 });
+

@@ -1,10 +1,9 @@
 @extends('layouts.applayout')
-
 @section('content')
 <div class="main-panel">
     <div class="content-wrapper">
       <div class="d-xl-flex justify-content-between align-items-start">
-        <h2 class="text-dark font-weight-bold mb-2"> Employees </h2>
+        <h2 class="text-dark font-weight-bold mb-2"> Team Panel </h2>
         <div class="d-sm-flex justify-content-xl-between align-items-center mb-2">
 
               <div class="dropdown-menu dropdown-menu-right" aria-labelledby="dropdownMenuButton1">
@@ -16,7 +15,7 @@
           <div class="d-sm-flex justify-content-between align-items-center transaparent-tab-border {">
             <ul class="nav nav-tabs tab-transparent" role="tablist">
               <li class="nav-item">
-                <a class="nav-link" id="home-tab" data-toggle="tab" href="#" role="tab" aria-selected="true">Total Employees</a>
+                <a class="nav-link" id="home-tab" data-toggle="tab" href="#" role="tab" aria-selected="true">Teams</a>
               </li>
               <li>
               </li>
@@ -37,8 +36,8 @@
   @if(Auth::user()->hasRole('admin'))
 
       <div class="mt-4">
-              <a href="/salary/slip-generate"> <button type="submit" class="btn btn-primary mr-2" style="background-color:
-                  rgb(32, 185, 58);border:1px solid  rgb(32, 185, 58) ">Add User</button>
+              <a href="/team/create"> <button type="submit" class="btn btn-primary mr-2" style="background-color:
+                  rgb(32, 185, 58);border:1px solid  rgb(32, 185, 58) ">Add New Team</button>
               </a>
           </div>
   @endif
@@ -53,33 +52,24 @@
                         <tr>
                           <th scope="col">#</th>
                           <th scope="col">Name</th>
-                          <th scope="col">Email</th>
-                          @if(Auth::user()->hasRole('admin'))
+                          <th scope="col">Salary</th>
                           <th scope="col">Action</th>
-                          @endif
                         </tr>
                       </thead>
                       <tbody>
-                        <tr>
+                        {{-- <tr>
                           @foreach ($users as $key=>$user)
                           <th scope="row"> {{$key+1}} </th>
                           <th scope="row"> <a href="/calendar-event/{{$user->id}}">{{$user->name}} </a></th>
-                          <td>{{$user->email}}</td>
-                          @if(Auth::user()->hasRole('admin'))
+                          <td>{{$user->salary}}</td>
                           <td>
                           <div class="d-flex justify-content-center">
-                              <a href="/user/edit/{{$user->id}}"><i class="bi bi-pencil-square" style="color:rgb(27, 216, 27)"></i></a>
-                              <form  method="POST" action="/user/delete/{{$user->id}}">
-                                  @csrf
-                                  {{ method_field('DELETE') }}
-                                <button style="background:none;border:none" type="submit"><i class="bi bi-archive-fill ml-2" style="color:rgb(230, 45, 45)"></i></button>
-                              </form>
+                            <a href="/user/{{$user->id}}/slips"><button type="button" class="btn btn-primary mr-2" style="background-color:
+                            rgb(115, 193, 230);border:1px solid  rgb(115, 193, 230) ">Salary Slips</button></a>
                           </div>
                           </td>
-                          @endif
-
                         </tr>
-                   @endforeach
+                   @endforeach --}}
                       </tbody>
                     </table>
                     </div>
@@ -88,4 +78,6 @@
               </div>
             </div>
           </div>
-        @endsection
+
+@endsection
+

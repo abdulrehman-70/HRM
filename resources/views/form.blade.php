@@ -87,7 +87,7 @@
                                 <input type="text" name="address" value="{{old('address')}}" class="form-control" id="exampleInputCity1">
                                 @error('address')
                                   <span class="error" style="color:red">{{ $message }}</span>
-                                  @enderror
+                                @enderror
                               </div>
                             </div>
                             <div class="col-6">

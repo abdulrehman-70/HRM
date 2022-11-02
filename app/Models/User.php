@@ -58,5 +58,10 @@ class User extends Authenticatable
     public function leaveApplications() {
         return $this->belongsTo(User::class);
     }
+    public function salarySlips()
+    {
+        return $this->hasMany(SalarySlip::class);
+    }
+
 
 }

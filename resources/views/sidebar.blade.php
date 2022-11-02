@@ -32,11 +32,17 @@
       </a>
     </li>
     <li class="nav-item">
-        <a class="nav-link" href="/admin/leave/requestsss">
+        <a class="nav-link" href="/salary/slip">
           <span class="icon-bg"><i class="bi bi-card-heading" style="color:rgb(115, 193, 230)"></i></span>
           <span class="menu-title">Salary Slip</span>
         </a>
-      </li>
+    </li>
+    <li class="nav-item">
+        <a class="nav-link" href="/teams">
+          <span class="icon-bg"><i class="bi bi-people" style="color:rgb(115, 193, 230)"></i></span>
+          <span class="menu-title">Teams</span>
+        </a>
+    </li>
   <li class="nav-item sidebar-user-actions">
     <div class="user-details">
       <div class="d-flex justify-content-between align-items-center">

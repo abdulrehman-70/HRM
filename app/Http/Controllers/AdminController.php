@@ -3,10 +3,14 @@
 namespace App\Http\Controllers;
 
 use App\Http\Requests\EditUserRequest;
+use App\Http\Requests\GenerateSalarySlipRequest;
 use App\Http\Requests\RegisterUserRequest;
 use App\Http\Requests\SubmitResponseRequest;
 use App\Models\Designation;
 use App\Models\LeaveApplication;
+use App\Models\SalarySlip;
+use App\Models\Team;
+use App\Models\TeamUser;
 use App\Models\User;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
@@ -75,5 +79,34 @@ class AdminController extends Controller
     public function deleteUser($id){
         User::find($id)->delete();
         return redirect('/admin/employees')->with(['success'=>'Employee has been deleted successfully']);
+    }
+    public function generateSalarySlip(GenerateSalarySlipRequest $request)
+    {
+         $data = $request->all();
+         $data['meal_allowance'] = isset($request->meal_allowance) ? $request->meal_allowance : '2500';
+         $user =  User::where('id',$request->user_id)->first();
+         $data['basic_salary'] = $user->salary;
+         SalarySlip::create($data);
+         return redirect('salary/slip');
+    }
+    public function createTeam(Request $request)
+    {
+        $request->validate([
+            'name'=>'required|unique:teams,name',
+            'users'=>'required'
+        ]);
+        $team = Team::create([
+            'name'=>$request->name
+        ]);
+        foreach($request->users as $user)
+        {
+           TeamUser::create([
+            'user_id' => $user,
+            'team_id' => $team
+           ]);
+
+        }
+        return redirect('/admin/dashboard')->with(['success'=>'Employee has been deleted successfully']);
+
     }
 }

@@ -9,7 +9,10 @@ use Illuminate\Support\Facades\Redirect;
 
 class LoginController extends Controller
 {
+
+
     public function login(LoginRequest $request){
+
 
         $credentials = ['email' => $request->email, 'password' => $request->password];
         if(Auth::attempt($credentials))

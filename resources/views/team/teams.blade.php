@@ -45,31 +45,42 @@
             <div class="tab-pane fade show active" id="business-1" role="tabpanel" aria-labelledby="business-tab">
               <div class="row d-flex justify-content-center">
                 <div class="col-12 grid-margin stretch-card">
-                  <div class="card">
+                 <div class="card">
                     <div class="card-body text-center">
                       <table class="table">
                       <thead>
                         <tr>
                           <th scope="col">#</th>
                           <th scope="col">Name</th>
-                          <th scope="col">Salary</th>
                           <th scope="col">Action</th>
                         </tr>
                       </thead>
                       <tbody>
-                        {{-- <tr>
-                          @foreach ($users as $key=>$user)
+                        <tr>
+                          @foreach ($teams as $key=>$team)
                           <th scope="row"> {{$key+1}} </th>
-                          <th scope="row"> <a href="/calendar-event/{{$user->id}}">{{$user->name}} </a></th>
-                          <td>{{$user->salary}}</td>
+                          <td><a href="/team/{{$team->id}}/members">{{$team->name}}</a></td>
+                          {{-- <td>
+                          <div class="d-flex justify-content-center">
+                            <a href="/team/{{$team->id}}/members"><button type="button" class="btn btn-primary mr-2" style="background-color:
+                            rgb(115, 193, 230);border:1px solid  rgb(115, 193, 230) ">See Members</button></a>
+                          </div>
+                          </td> --}}
                           <td>
                           <div class="d-flex justify-content-center">
-                            <a href="/user/{{$user->id}}/slips"><button type="button" class="btn btn-primary mr-2" style="background-color:
-                            rgb(115, 193, 230);border:1px solid  rgb(115, 193, 230) ">Salary Slips</button></a>
-                          </div>
-                          </td>
+                            <a href="/team/{{$team->id}}/edit"><i class="bi bi-pencil-square" style="color:rgb(27, 216, 27)"></i></a>
+                            <form  method="POST" action="/team/{{$team->id}}/delete">
+                                @csrf
+                                {{ method_field('DELETE') }}
+                              <button style="background:none;border:none" type="submit">
+                                <i class="bi bi-archive-fill ml-2" style="color:rgb(230, 45, 45)"></i>
+                             </button>
+                            </form>
+                         </div>
+                        </td>
+                          <a href="/team/{{$team->id}}/delete"><td></td></a>
                         </tr>
-                   @endforeach --}}
+                   @endforeach
                       </tbody>
                     </table>
                     </div>

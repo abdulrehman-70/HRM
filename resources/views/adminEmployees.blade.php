@@ -37,7 +37,7 @@
   @if(Auth::user()->hasRole('admin'))
 
       <div class="mt-4">
-              <a href="/salary/slip-generate"> <button type="submit" class="btn btn-primary mr-2" style="background-color:
+              <a href="/admin/add"> <button type="submit" class="btn btn-primary mr-2" style="background-color:
                   rgb(32, 185, 58);border:1px solid  rgb(32, 185, 58) ">Add User</button>
               </a>
           </div>

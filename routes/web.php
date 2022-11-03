@@ -9,6 +9,8 @@ use App\Models\Attendance;
 use App\Models\Designation;
 use App\Models\LeaveApplication;
 use App\Models\SalarySlip;
+use App\Models\Team;
+use App\Models\TeamUser;
 use App\Models\User;
 use Carbon\Carbon;
 use Illuminate\Support\Facades\Auth;
@@ -92,20 +94,38 @@ Route::group(['middleware' => 'AdminAndHrMiddleware'], function () {
 
     });
     Route::get('/teams', function () {
-        $users = User::all();
+        $teams = Team::all();
 
-        return view('team.teams',['users'=>$users]);
+        return view('team.teams',['teams'=>$teams]);
     });
+
     Route::get('/team/create', function () {
         $users = User::all();
         return view('team.addTeam',['users'=>$users]);
     });
-    Route::post('/team-create',[AdminController::class,'createTeam']);
 
+
+    Route::post('/team-create',[AdminController::class,'createTeam']);
+    Route::delete('/team/{id}/delete',[AdminController::class,'deleteTeam']);
+
+    Route::get('/team/{id}/edit', function ($id) {
+        $users = User::all();
+        $team = Team::where('id',$id)->with('user')->first();
+        $teamUsers = TeamUser::where('team_id',$id)->with('user')->get();
+        return view('team.editTeam',['users'=>$users,'team'=>$team,'teamUsers'=>$teamUsers]);
+    });
+    // Route::post('/team/{id}/edit',[AdminController::class,'editTeam']);
+
+
+    Route::get('/team/{id}/members', function ($id) {
+        $teamMembers =TeamUser::where('team_id',$id)->with('user','team')->get();
+        $team = Team::where('id',$id)->first();
+        return view('team.teamMembers',['teamMembers'=>$teamMembers,'team'=>$team]);
+    });
+    Route::delete('/team/member/{id}/delete',[AdminController::class,'deleteTeamMembers']);
 
 
     Route::post('/salary/slip/generate',[AdminController::class,'generateSalarySlip']);
-
     Route::post('/user/add', [AdminController::class,'addUser']);
     Route::get('/user/edit/{id}', [AdminController::class,'editUser']);
     Route::post('/user/edit/{id}', [AdminController::class,'editUserData']);

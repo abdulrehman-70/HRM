@@ -102,11 +102,27 @@ class AdminController extends Controller
         {
            TeamUser::create([
             'user_id' => $user,
-            'team_id' => $team
+            'team_id' => $team->id
            ]);
-
         }
-        return redirect('/admin/dashboard')->with(['success'=>'Employee has been deleted successfully']);
+        return redirect('/admin/dashboard')->with(['success'=>'Team has been added successfully']);
 
+    }
+
+    Public function deleteTeam($id)
+    {
+        Team::find($id)->delete();
+        return redirect('/teams')->with(['success'=>'Team has been deleted successfully']);
+    }
+    Public function editTeam(Request $request)
+    {
+        return $request->id;
+        Team::where('id',$request->id)->first();
+        return redirect('/teams')->with(['success'=>'Team has been deleted successfully']);
+    }
+    Public function deleteTeamMembers($id)
+    {
+        TeamUser::find($id)->delete();
+        return redirect('/teams/'.$id.'/members')->with(['success'=>'Team Member has been deleted successfully']);
     }
 }

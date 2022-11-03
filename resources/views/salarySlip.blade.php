@@ -60,7 +60,7 @@
                         <tr>
                           @foreach ($users as $key=>$user)
                           <th scope="row"> {{$key+1}} </th>
-                          <th scope="row"> <a href="/calendar-event/{{$user->id}}">{{$user->name}} </a></th>
+                          <th scope="row"> <a href="{{$user->id}}">{{$user->name}} </a></th>
                           <td>{{$user->salary}}</td>
                           <td>
                           <div class="d-flex justify-content-center">

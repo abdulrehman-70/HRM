@@ -114,7 +114,7 @@ Route::group(['middleware' => 'AdminAndHrMiddleware'], function () {
         $teamUsers = TeamUser::where('team_id',$id)->with('user')->get();
         return view('team.editTeam',['users'=>$users,'team'=>$team,'teamUsers'=>$teamUsers]);
     });
-    // Route::post('/team/{id}/edit',[AdminController::class,'editTeam']);
+    Route::post('/team-update/{id}',[AdminController::class,'updateTeam']);
 
 
     Route::get('/team/{id}/members', function ($id) {

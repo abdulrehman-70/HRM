@@ -19,6 +19,7 @@ class CalenderController extends Controller
          $user = Attendance::where('user_id',$request->id)->get();
          $absent = Attendance::where('availability',0)->get();
          return view('calender',['user'=>$user,'absent'=>$absent]);
+         
     }
 
     public function calendarEvents(Request $request)

@@ -92,19 +92,21 @@ class AdminController extends Controller
     public function createTeam(Request $request)
     {
         $request->validate([
-            'name'=>'required|unique:teams,name',
+            'name'=>'required|unique:teams,name,except,'.$request->id,
             'users'=>'required'
         ]);
         $team = Team::create([
             'name'=>$request->name
         ]);
-        foreach($request->users as $user)
-        {
-           TeamUser::create([
-            'user_id' => $user,
-            'team_id' => $team->id
-           ]);
-        }
+        $team->users()->sync($request->users);
+
+        // foreach($request->users as $user)
+        // {
+        //    TeamUser::create([
+        //     'user_id' => $user,
+        //     'team_id' => $team->id
+        //    ]);
+        // }
         return redirect('/admin/dashboard')->with(['success'=>'Team has been added successfully']);
 
     }
@@ -119,6 +121,24 @@ class AdminController extends Controller
         return $request->id;
         Team::where('id',$request->id)->first();
         return redirect('/teams')->with(['success'=>'Team has been deleted successfully']);
+    }
+    Public function updateTeam(Request $request,$id)
+    {
+        $request->validate([
+            'name'=>'required|unique:teams,name,'.$request->id,
+            'users'=>'required'
+        ]);
+        $data = $request->all();
+        unset($data['_token']);
+        unset($data['users']);
+        unset($data['user_id']);
+
+        $team = Team::find($request->id);
+        $team->users()->sync($request->users);
+        Team::where('id',$request->id)->update($data);
+        
+        return redirect('/teams')->with(['success'=>'Team has been updated successfully']);
+
     }
     Public function deleteTeamMembers($id)
     {

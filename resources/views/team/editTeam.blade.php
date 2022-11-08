@@ -46,7 +46,7 @@
                 <div class="col-12 grid-margin stretch-card">
                   <div class="card" id="capture">
                     <div class="card-body" style="color:black">
-                        <form class="forms-sample" method="POST" action="/team-create" enctype="multipart/form-data">
+                        <form class="forms-sample" method="POST" action="/team-update/{{$team->id}}" enctype="multipart/form-data">
                             @csrf
                             <div class="form-group">
                               <label for="exampleInputName1">Team Name</label>
@@ -61,11 +61,19 @@
 
                                     <label for="select2Multiple"></label>
                                     <select class="select2-multiple form-control" name="users[]" class="form-control" multiple="multiple"
-                                      id="select2Multiple">
+                                            id="select2Multiple">
                                         @foreach($teamUsers as $teamUser)
-                                        <option value="{{$teamUser['user']['id']}}">
+                                        <option value="{{$teamUser['user']['id']}}" selected="selected">
                                             {{$teamUser['user']['name']}}
                                         </option>
+
+                                        {{-- <?php
+                                        $user_ids = array_map(function ($user) {
+                                            return $user['id'];
+                                        }, $teamUsers->user->toArray());
+                                        $exist = in_array($user->id, $user_ids);
+                                        $exist = $exist ? 'selected' : '';
+                                        ?> --}}
                                         @endforeach
                                     </select>
                                     @error('users')
@@ -74,7 +82,7 @@
                                   </div>
                             <input type="hidden" id="user_id" name="user_id">
                             <button type="submit" class="btn btn-primary mr-2 download" style="background-color:
-                            rgb(115, 193, 230);border:1px solid  rgb(115, 193, 230)" data-id="salary_slip" >Generate</button>
+                            rgb(115, 193, 230);border:1px solid  rgb(115, 193, 230)" data-id="salary_slip" >Update</button>
                         </form>
                     </div>
                   </div>
@@ -92,14 +100,10 @@
 <script src="https://cdn.jsdelivr.net/npm/select2@4.1.0-rc.0/dist/js/select2.min.js"></script>
 
 <script>
-  $(document).ready(function() {
-      // Select2 Multiple
       $('.select2-multiple').select2({
           placeholder: "Select",
-          allowClear: true
+          allowClear: true   
       });
-
-  });
 
 </script>
 <script>

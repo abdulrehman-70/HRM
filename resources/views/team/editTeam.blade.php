@@ -14,7 +14,7 @@
           <div class="d-sm-flex justify-content-between align-items-center transaparent-tab-border {">
             <ul class="nav nav-tabs tab-transparent" role="tablist">
               <li class="nav-item">
-                <a class="nav-link" id="home-tab" data-toggle="tab" href="#" role="tab" aria-selected="true">Create New Team</a>
+                <a class="nav-link" id="home-tab" data-toggle="tab" href="#" role="tab" aria-selected="true">Edit Team</a>
               </li>
               <li>
               </li>
@@ -66,14 +66,6 @@
                                         <option value="{{$teamUser['user']['id']}}" selected="selected">
                                             {{$teamUser['user']['name']}}
                                         </option>
-
-                                        {{-- <?php
-                                        $user_ids = array_map(function ($user) {
-                                            return $user['id'];
-                                        }, $teamUsers->user->toArray());
-                                        $exist = in_array($user->id, $user_ids);
-                                        $exist = $exist ? 'selected' : '';
-                                        ?> --}}
                                         @endforeach
                                     </select>
                                     @error('users')

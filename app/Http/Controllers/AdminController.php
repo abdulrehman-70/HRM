@@ -140,9 +140,9 @@ class AdminController extends Controller
         return redirect('/teams')->with(['success'=>'Team has been updated successfully']);
 
     }
-    Public function deleteTeamMembers($id)
+    Public function deleteTeamMembers($team_id,$user_id)
     {
-        TeamUser::find($id)->delete();
-        return redirect('/teams/'.$id.'/members')->with(['success'=>'Team Member has been deleted successfully']);
+        return TeamUser::where('user_id',$user_id)->get();
+        return redirect('/teams')->with(['success'=>'Team Member has been deleted successfully']);
     }
 }

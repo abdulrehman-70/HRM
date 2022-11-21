@@ -122,7 +122,7 @@ Route::group(['middleware' => 'AdminAndHrMiddleware'], function () {
         $team = Team::where('id',$id)->first();
         return view('team.teamMembers',['teamMembers'=>$teamMembers,'team'=>$team]);
     });
-    Route::delete('/team/member/{id}/delete',[AdminController::class,'deleteTeamMembers']);
+    Route::delete('/team/{team_id}/member/{user_id}/delete',[AdminController::class,'deleteTeamMembers']);
 
 
     Route::post('/salary/slip/generate',[AdminController::class,'generateSalarySlip']);

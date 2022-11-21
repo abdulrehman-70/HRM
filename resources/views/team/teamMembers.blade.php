@@ -54,7 +54,7 @@
                           <td>{{$teamMember->user->name}}</td>
                           <td>
                             <div class="d-flex justify-content-center">
-                                <form  method="POST" action="/team/member/{{$team->id}}/delete">
+                                <form  method="POST" action="/team/{{ $team->id }}/member/{{$teamMember->user->id}}/delete">
                                     @csrf
                                     {{ method_field('DELETE') }}
                                   <button style="background:none;border:none" type="submit">

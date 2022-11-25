@@ -51,8 +51,8 @@
                       </thead>
                       <tbody>
                         <tr>
-                          @foreach ($users as $key1=>$user)
-                          <th scope="row"> {{$key1+1}} </th>
+                          @foreach ($users as $key=>$user)
+                          <th scope="row"> {{$key+1}} </th>
                           <td><a href="/calendar-event/{{$user->id}}"> {{$user->name}} </a> </td>
                           <td>{{@$user['today_attendance']['start_time']}}</td>
                           <td>{{@$user['today_attendance']['end_time']}}</td>

@@ -13,7 +13,7 @@
   </li>
   <li class="nav-item">
     <a class="nav-link" href="/admin/employees">
-      <span class="icon-bg"><i class="mdi mdi-cube menu-icon" style="color:rgb(115, 193, 230)"></i></span>
+      <span class="icon-bg"><i class="mdi mdi-nature-people menu-icon" style="color:rgb(115, 193, 230)"></i></span>
       <span class="menu-title">Employees</span>
     </a>
   </li>
@@ -24,11 +24,18 @@
         <span class="menu-title">Users Calender</span>
       </a>
     </li>
-
     <li class="nav-item">
       <a class="nav-link" href="/admin/leave/requests">
         <span class="icon-bg"><i class="mdi mdi-format-list-bulleted menu-icon" style="color:rgb(115, 193, 230)"></i></span>
         <span class="menu-title">Leave Requests</span>
+      </a>
+    </li>
+
+
+    <li class="nav-item">
+      <a class="nav-link" href="/admin/loan">
+        <span class="icon-bg"><i class="mdi mdi-currency-usd menu-icon" style="color:rgb(115, 193, 230)"></i></span>
+        <span class="menu-title">Loan</span>
       </a>
     </li>
     <li class="nav-item">
@@ -129,7 +136,7 @@
     </li>
   </ul>
 
-@else
+  @elseif(Auth::user()->hasRole('employee'))
 
 <ul class="nav mt-5">
     <li class="nav-item">

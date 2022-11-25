@@ -23,7 +23,7 @@ class AdminController extends Controller
         $data= $request->all();
         $data['password'] = Hash::make($request->password);
         $user = User::create($data);
-        $user->assignRole('hr');
+        $user->assignRole('employee');
         return redirect('/admin/dashboard')->with(['success'=>'Employee has been added successfully']);
     }
     public function submitResponse(SubmitResponseRequest $request){
@@ -142,7 +142,7 @@ class AdminController extends Controller
     }
     Public function deleteTeamMembers($team_id,$user_id)
     {
-        return TeamUser::where('user_id',$user_id)->get();
+        TeamUser::where('user_id',$user_id)->where('team_id',$team_id)->delete();
         return redirect('/teams')->with(['success'=>'Team Member has been deleted successfully']);
     }
 }

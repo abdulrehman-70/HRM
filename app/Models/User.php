@@ -31,6 +31,7 @@ class User extends Authenticatable
         'phone_number',
         'emergency_contact_name',
         'emergency_phone_number',
+        'loan_amount'
     ];
 
     /**
@@ -61,6 +62,11 @@ class User extends Authenticatable
     public function salarySlips()
     {
         return $this->hasMany(SalarySlip::class);
+    }
+    public function loan()
+    {
+        return $this->hasMany(Loan::class);
+
     }
 
 

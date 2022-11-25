@@ -5,6 +5,7 @@ use App\Http\Controllers\CalenderController;
 use App\Http\Controllers\LoginController;
 use App\Http\Controllers\PDFController;
 use App\Http\Controllers\UserController;
+use App\Http\Controllers\LoanController;
 use App\Models\Attendance;
 use App\Models\Designation;
 use App\Models\LeaveApplication;
@@ -12,6 +13,7 @@ use App\Models\SalarySlip;
 use App\Models\Team;
 use App\Models\TeamUser;
 use App\Models\User;
+use App\Models\Loan;
 use Carbon\Carbon;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Route;
@@ -219,7 +221,22 @@ Route::get('/', function () {
 
 
 /* Admin */
+Route::get('/admin/loan',[LoanController::class,'index']);
 
+Route::get('/request/Loan', function () {
+    $users = User::all();
+    return view('loans.requestLoan',['users'=>$users]);
+});
+
+Route::post('/request/Loan',[LoanController::class,'store']);
+
+Route::get('/loan/history/{id}', function($id)
+{
+    $user = User::where('id',$id)->first();
+    $loans = Loan::where('user_id',$id)->get();
+    return view('loans.loanHistory',['user'=>$user, 'loans'=>$loans]);
+});
+Route::post('/loan/delete/{id}', [LoanController::class,'deleteLoan']);
 
 Route::get('/admin', function () {
     return view('admin');

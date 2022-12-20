@@ -58,16 +58,6 @@
                           </div>
                             <div class="form-group">
                                 <label for="exampleSelectGender">Select Employee</label>
-                                {{-- <select class="form-control" name="user" onchange="userValue()" id="user_from_list" multiple>
-                                    <option selected="selected" id="defaulOptions">
-                                        Select Members
-                                    </option>
-                                    @foreach($users as $user)
-                                    <option value="{{$user->id}}" id="options">
-                                        {{$user->name}}
-                                    </option>
-                                    @endforeach
-                                </select> --}}
                                     <label for="select2Multiple"></label>
                                     <select class="select2-multiple form-control" name="users[]" class="form-control" multiple="multiple"
                                       id="select2Multiple">

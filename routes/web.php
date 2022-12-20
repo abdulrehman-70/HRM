@@ -6,6 +6,10 @@ use App\Http\Controllers\LoginController;
 use App\Http\Controllers\PDFController;
 use App\Http\Controllers\UserController;
 use App\Http\Controllers\LoanController;
+use App\Http\Controllers\InterviewController;
+use App\Http\Controllers\ClientController;
+use App\Http\Controllers\ProjectController;
+use App\Http\Controllers\TaskController;
 use App\Models\Attendance;
 use App\Models\Designation;
 use App\Models\LeaveApplication;
@@ -14,6 +18,12 @@ use App\Models\Team;
 use App\Models\TeamUser;
 use App\Models\User;
 use App\Models\Loan;
+use App\Models\Interview;
+use App\Models\InterviewStatus;
+use App\Models\Client;
+use App\Models\Project;
+use App\Models\Task;
+use App\Models\TaskStatus;
 use Carbon\Carbon;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Route;
@@ -195,6 +205,15 @@ Route::group(['middleware' => 'user'], function () {
     Route::post('/check-out',[UserController::class,'checkOut']);
     Route::post('/user/leave/submit',[UserController::class,'submitLeave']);
 
+    Route::get('/employee/tasks/{status_name}/',function($status_name){
+        $taskStatuses = TaskStatus::all();
+        $taskStatusID = TaskStatus::where('name',$status_name)->first();
+        $user = User::where('id',Auth::user()->id)->first();
+        $tasks = $user->tasks->where("task_status_id",$taskStatusID->id);   
+        return view('userTaskDashboard',['tasks'=>$tasks,'taskStatuses'=>$taskStatuses]);
+    });
+    Route::post('/update/task/status/',[TaskController::class,'updateStatus']);
+
 });
 
 
@@ -220,7 +239,7 @@ Route::get('/', function () {
 
 
 
-/* Admin */
+/* Loan */
 Route::get('/admin/loan',[LoanController::class,'index']);
 
 Route::get('/request/Loan', function () {
@@ -237,6 +256,64 @@ Route::get('/loan/history/{id}', function($id)
     return view('loans.loanHistory',['user'=>$user, 'loans'=>$loans]);
 });
 Route::post('/loan/delete/{id}', [LoanController::class,'deleteLoan']);
+
+//Interview
+Route::get('/interview/Index/',function(){
+    $interviews = Interview::with('designation','status')->get();
+    $statuses = InterviewStatus::all();
+    return view('interview.interviewIndex',['interviews'=> $interviews,'statuses'=>$statuses]);
+});
+Route::get('/interview/form/',function(){
+    $designations = Designation::all();
+    $statuses = InterviewStatus::all();
+    return view('interview.interviewForm',['designations'=>$designations,'statuses'=>$statuses]);
+});
+Route::post('/add/interview/form/',[InterviewController::class,'createInterview']);
+Route::post('/update/interview/status/',[InterviewController::class,'updateStatus']);
+
+//Clients
+Route::get('/clients/',function(){
+    $clients = Client::all();
+    return view('client',['clients'=>$clients]);
+});
+Route::get('/client/form',function(){
+    return view('clientForm');
+});
+Route::post('/add/client/form/',[ClientController::class,'create']);
+Route::post('/client/delete/{id}',[ClientController::class,'delete']);
+
+//Projects
+Route::get('/projects/',function(){
+    $projects = Project::with('client')->get();
+    return view('project',['projects'=>$projects]);
+});
+Route::get('/project/form',function(){
+    $clients = Client::all();
+    return view('projectForm',['clients'=>$clients]);
+});
+Route::post('/add/project/form/',[ProjectController::class,'create']);
+
+//Tasks
+Route::get('/tasks/',function(){
+    $tasks = Task::with('project','team','team_user','task_status')->get();
+    return view('task',['tasks'=>$tasks]);
+});
+Route::get('/task/form/',function(){
+    $projects = Project::all();
+    $teams = Team::with('users')->get();
+    $statuses = TaskStatus::all();
+    return view('taskForm',['projects'=>$projects,'teams'=>$teams,'statuses'=>$statuses]);
+});
+Route::post('/add/task/form/',[TaskController::class,'create']);
+
+Route::get('/task/{id}/edit',function($id){
+    $task = Task::where('id',$id)->first();
+    $projects = Project::all();
+    $teams = Team::with('users')->get();
+    $statuses = TaskStatus::all();
+    return view('taskEdit',['task'=>$task,'projects'=>$projects,'teams'=>$teams,'statuses'=>$statuses]);
+});
+Route::post('/update/task/form/{id}',[TaskController::class,'updateTask']);
 
 Route::get('/admin', function () {
     return view('admin');

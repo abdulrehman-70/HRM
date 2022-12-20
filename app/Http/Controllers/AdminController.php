@@ -20,8 +20,14 @@ use Illuminate\Support\Facades\Mail;
 class AdminController extends Controller
 {
     public function addUser(RegisterUserRequest $request){
+        $destination_path='public/images';
+        $image = $request->file('image');
+        $image_name=$image->getClientOriginalName();
+        $path = $request->file('image')->storeAs($destination_path,$image_name);
+ 
         $data= $request->all();
         $data['password'] = Hash::make($request->password);
+        $data['image']=$image_name;
         $user = User::create($data);
         $user->assignRole('employee');
         return redirect('/admin/dashboard')->with(['success'=>'Employee has been added successfully']);
@@ -107,7 +113,7 @@ class AdminController extends Controller
         //     'team_id' => $team->id
         //    ]);
         // }
-        return redirect('/admin/dashboard')->with(['success'=>'Team has been added successfully']);
+        return redirect('/teams')->with(['success'=>'Team has been added successfully']);
 
     }
 
@@ -120,7 +126,7 @@ class AdminController extends Controller
     {
         return $request->id;
         Team::where('id',$request->id)->first();
-        return redirect('/teams')->with(['success'=>'Team has been deleted successfully']);
+        // return redirect('/teams')->with(['success'=>'Team has been deleted successfully']);
     }
     Public function updateTeam(Request $request,$id)
     {

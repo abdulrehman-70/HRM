@@ -62,10 +62,16 @@
                                     <label for="select2Multiple"></label>
                                     <select class="select2-multiple form-control" name="users[]" class="form-control" multiple="multiple"
                                             id="select2Multiple">
-                                        @foreach($teamUsers as $teamUser)
-                                        <option value="{{$teamUser['user']['id']}}" selected="selected">
-                                            {{$teamUser['user']['name']}}
-                                        </option>
+                                        @foreach($users as $user)
+
+                                       <?php 
+                                       $user_ids = array_map(function ($user) {
+                                          return $user['user_id'];
+                                      }, $teamUsers->toArray());
+                                        $exist = in_array($user->id, $user_ids);
+                                        $exist = $exist ? 'selected="selected"' : ''; 
+                                        ?>
+                                        <option value="{{$user->id}}"  {{ $exist }}>{{$user->name}}</option>
                                         @endforeach
                                     </select>
                                     @error('users')
@@ -92,6 +98,26 @@
 <script src="https://cdn.jsdelivr.net/npm/select2@4.1.0-rc.0/dist/js/select2.min.js"></script>
 
 <script>
+            let users = '<?php echo $users; ?>';
+            let teamUsers = '<?php echo $teamUsers; ?>';
+            users = JSON.parse(users)
+            teamUsers = JSON.parse(teamUsers);
+            let user_ids = teamUsers.map((user) => user.user_id)
+            console.log(user_ids)
+
+            
+            let userOptions = '';
+            users.forEach((user) => {
+              
+              let exist = user_ids.includes(user.id) ? "selected" : "";
+                userOptions += '<option value="' + user.id + '"  ' + exist + '>' + user.name + '</option>'
+                // userOptions+= `option value='${user.id}'>${user.name}</option>`;
+            });
+
+
+
+
+            
       $('.select2-multiple').select2({
           placeholder: "Select",
           allowClear: true   
@@ -100,13 +126,13 @@
 </script>
 <script>
 <script src="https://cdn.jsdelivr.net/npm/select2@4.1.0-rc.0/dist/js/select2.min.js"></script>
-<script>
-  $('#myselect').select2({
-    width: '100%',
-    placeholder: "Select an Option",
-    allowClear: true
-  });
-</script>
+// <script>
+//   // $('#myselect').select2({
+//   //   width: '100%',
+//   //   placeholder: "Select an Option",
+//   //   allowClear: true
+//   // });
+// </script>
 
 </script>
 

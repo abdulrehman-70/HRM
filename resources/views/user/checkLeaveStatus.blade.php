@@ -28,72 +28,75 @@
                       aria-selected="false">Rejected Leaves</a>
                     </li>
                   </ul>
-                  <div class="tab-content" id="myTabContent">
+                <div class="tab-content" id="myTabContent">
                     <div class="tab-pane fade show active" id="home" role="tabpanel" aria-labelledby="home-tab">
 
 
-                <table class="table">
-                    <thead>
-                      <tr>
-                        <th scope="col">#</th>
-                        <th scope="col">Employee Name</th>
-                        <th scope="col">Leave Type</th>
-                        <th scope="col">Start Date</th>
-                        <th scope="col">End Date</th>
-                        <th scope="col">Status</th>
-                      </tr>
-                    </thead>
-                    <tbody>
-                      <tr>
-                        @foreach ($pendingLeaves as $key1=>$pendingLeave)
-                        <th scope="row"> {{$key1+1}} </th>
-                        <td>{{$pendingLeave->user->name}}</td>
-                        @if ($pendingLeave->leave_type=='Half Leave')
-                        <td>{{$pendingLeave->leave_type.' '.'('.$pendingLeave->half_leave_type.')'}}</td>
-                        @else
-                        <td>{{$pendingLeave->leave_type}}</td>
-                        @endif
+                      <table class="table">
+                          <thead>
+                            <tr>
+                              <th scope="col">#</th>
+                              <th scope="col">Employee Name</th>
+                              <th scope="col">Leave Type</th>
+                              <th scope="col">Start Date</th>
+                              <th scope="col">End Date</th>
+                              <th scope="col">Status</th>
+                            </tr>
+                          </thead>
+                          <tbody>
+                            <tr>
+                              @foreach ($pendingLeaves as $key1=>$pendingLeave)
+                              <th scope="row"> {{$key1+1}} </th>
+                              <td>{{$pendingLeave->user->name}}</td>
+                              @if ($pendingLeave->leave_type=='Half Leave')
+                              <td>{{$pendingLeave->leave_type.' '.'('.$pendingLeave->half_leave_type.')'}}</td>
+                              @else
+                              <td>{{$pendingLeave->leave_type}}</td>
+                              @endif
 
 
-                        <td>{{$pendingLeave->start_date}}</td>
-                        <td>{{$pendingLeave->end_date}}</td>
-                        <td>{{$pendingLeave->status}}</td>
+                              <td>{{$pendingLeave->start_date}}</td>
+                              <td>{{$pendingLeave->end_date}}</td>
+                              <td>{{$pendingLeave->status}}</td>
 
-                    </tr>
-                    @endforeach
-                </tbody>
-                </table>
-
-                    </div>
-                    <div class="tab-pane fade" id="profile" role="tabpanel" aria-labelledby="profile-tab">  <table class="table">
-                        <thead>
-                          <tr>
-                            <th scope="col">#</th>
-                            <th scope="col">Employee Name</th>
-                            <th scope="col">Leave Type</th>
-                            <th scope="col">Start Date</th>
-                            <th scope="col">End Date</th>
-                            <th scope="col">Status</th>
                           </tr>
-                        </thead>
-                        <tbody>
-                          <tr>
-                            @foreach ($approvedLeaves as $key1=>$approvedLeave)
-                            <th scope="row"> {{$key1+1}} </th>
-                            <td>{{$approvedLeave->user->name}}</td>
-                            @if ($approvedLeave->leave_type=='Half Leave')
-                            <td>{{$approvedLeave->leave_type.' '.'('.$approvedLeave->half_leave_type.')'}}</td>
-                            @else
-                            <td>{{$approvedLeave->leave_type}}</td>
-                            @endif
-                            <td>{{$approvedLeave->start_date}}</td>
-                            <td>{{$approvedLeave->end_date}}</td>
-                            <td>{{$approvedLeave->status}}</td>
+                          @endforeach
+                      </tbody>
+                      </table>
+                    </div>
 
-                        </tr>
-                        @endforeach
-                    </tbody>
-                    </table></div>
+                    <div class="tab-pane fade" id="profile" role="tabpanel" aria-labelledby="profile-tab">  
+                        <table class="table">
+                          <thead>
+                            <tr>
+                              <th scope="col">#</th>
+                              <th scope="col">Employee Name</th>
+                              <th scope="col">Leave Type</th>
+                              <th scope="col">Start Date</th>
+                              <th scope="col">End Date</th>
+                              <th scope="col">Status</th>
+                            </tr>
+                          </thead>
+                          <tbody>
+                            <tr>
+                              @foreach ($approvedLeaves as $key1=>$approvedLeave)
+                              <th scope="row"> {{$key1+1}} </th>
+                              <td>{{$approvedLeave->user->name}}</td>
+                              @if ($approvedLeave->leave_type=='Half Leave')
+                              <td>{{$approvedLeave->leave_type.' '.'('.$approvedLeave->half_leave_type.')'}}</td>
+                              @else
+                              <td>{{$approvedLeave->leave_type}}</td>
+                              @endif
+                              <td>{{$approvedLeave->start_date}}</td>
+                              <td>{{$approvedLeave->end_date}}</td>
+                              <td>{{$approvedLeave->status}}</td>
+
+                          </tr>
+                          @endforeach
+                      </tbody>
+                      </table>
+                    </div>
+
                     <div class="tab-pane fade" id="contact" role="tabpanel" aria-labelledby="contact-tab">
                         <table class="table">
                             <thead>
@@ -126,7 +129,7 @@
                         </tbody>
                         </table>
                     </div>
-                  </div>
+                </div>
 
 
             </div>

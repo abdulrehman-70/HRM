@@ -51,7 +51,7 @@
 
 
   </head>
-  <body>
+  <body class="text-dark">
     <div class="container-scroller">
       <!-- partial:partials/_navbar.html -->
      @include('layouts.navbar')

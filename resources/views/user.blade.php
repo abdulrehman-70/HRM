@@ -70,8 +70,8 @@
                           <tr>
                             @foreach ($data as $key=>$dt)
                             <th scope="row">  {{date("D",strtotime($dt->created_at))}} &nbsp; {{'('}}{{date('Y-m-d')}}{{')'}}  </th>
-                            <td>{{$dt->start_time}}</td>
-                            <td>{{$dt->end_time}}</td>
+                            <td>{{ Carbon\Carbon::parse($dt->start_time)->format('d-M-Y  g:i A' ) }}</td>
+                            <td>{{ $dt->end_time ? Carbon\Carbon::parse($dt->end_time)->format('d-M-Y  g:i A' ): '-' }}</td>
                             <td></td>
                           </tr>
                      @endforeach

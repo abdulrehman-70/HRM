@@ -50,18 +50,39 @@
           <span class="menu-title">Teams</span>
         </a>
     </li>
+    <li class="nav-item">
+      <a class="nav-link" href="/interview/Index/">
+        <span class="icon-bg"><i class="mdi mdi-calendar-question" style="color:rgb(115, 193, 230)"></i></span>
+        <span class="menu-title">Interviews</span>
+      </a>
+    </li>
+    <li class="nav-item">
+      <a class="nav-link" href="/clients/">
+        <span class="icon-bg"><i class="mdi mdi-account-alert" style="color:rgb(115, 193, 230)"></i></span>
+        <span class="menu-title">Clients</span>
+      </a>
+    </li>
+    <li class="nav-item">
+      <a class="nav-link" href="/projects/">
+        <span class="icon-bg"><i class="mdi mdi-target" style="color:rgb(115, 193, 230)"></i></span>
+        <span class="menu-title">Projects</span>
+      </a>
+    </li>
   <li class="nav-item sidebar-user-actions">
-    <div class="user-details">
+    <div class="user-details mt-3">
       <div class="d-flex justify-content-between align-items-center">
         <div>
-          <div class="d-flex align-items-center">
+          {{-- <div class="d-flex align-items-center">
             <div class="sidebar-profile-img">
-              <img src="/assets/images/faces/face28.png" alt="image">
+              <img src="{{asset('storage/images/'.Auth::user()->image)}}" alt="image">
+
             </div>
             <div class="sidebar-profile-text">
               <p class="mb-1">{{@Auth::user()->name}}</p>
             </div>
-          </div>
+          </div> --}}
+          <a href="/logout" class="nav-link"><i class="mdi mdi-logout menu-icon"></i>
+            <span class="menu-title">Log Out</span></a>
         </div>
         <!-- <div class="badge badge-danger">3</div> -->
       </div>
@@ -69,8 +90,8 @@
   </li>
   <li class="nav-item sidebar-user-actions">
     <div class="sidebar-user-menu">
-      <a href="/logout" class="nav-link"><i class="mdi mdi-logout menu-icon"></i>
-        <span class="menu-title">Log Out</span></a>
+      {{-- <a href="/logout" class="nav-link"><i class="mdi mdi-logout menu-icon"></i>
+        <span class="menu-title">Log Out</span></a> --}}
     </div>
   </li>
 </ul>
@@ -115,14 +136,17 @@
       <div class="user-details">
         <div class="d-flex justify-content-between align-items-center">
           <div>
-            <div class="d-flex align-items-center">
+            {{-- <div class="d-flex align-items-center">
               <div class="sidebar-profile-img">
-                <img src="/assets/images/faces/face28.png" alt="image">
+                <img src="{{asset('storage/images/'.Auth::user()->image)}}" alt="image">
+
               </div>
               <div class="sidebar-profile-text">
                 <p class="mb-1">{{@Auth::user()->name}}</p>
               </div>
-            </div>
+            </div> --}}
+            <a href="/logout" class="nav-link"><i class="mdi mdi-logout menu-icon"></i>
+              <span class="menu-title">Log Out</span></a>
           </div>
           <!-- <div class="badge badge-danger">3</div> -->
         </div>
@@ -130,8 +154,8 @@
     </li>
     <li class="nav-item sidebar-user-actions">
       <div class="sidebar-user-menu">
-        <a href="/logout" class="nav-link"><i class="mdi mdi-logout menu-icon"></i>
-          <span class="menu-title">Log Out</span></a>
+        {{-- <a href="/logout" class="nav-link"><i class="mdi mdi-logout menu-icon"></i>
+          <span class="menu-title">Log Out</span></a> --}}
       </div>
     </li>
   </ul>
@@ -152,18 +176,26 @@
           <span class="menu-title">Leave Applications</span>
         </a>
       </li>
+      <li class="nav-item">
+        <a class="nav-link" href="/employee/tasks/Todo">
+          <span class="icon-bg"><i class="mdi mdi-target menu-icon" style="color:rgb(115, 193, 230)"></i></span>
+          <span class="menu-title">Tasks</span>
+        </a>
+      </li>
     <li class="nav-item sidebar-user-actions">
-      <div class="user-details">
+      <div class="user-details mt-4">
         <div class="d-flex justify-content-between align-items-center">
           <div>
-            <div class="d-flex align-items-center">
+            {{-- <div class="d-flex align-items-center">
               <div class="sidebar-profile-img">
-                <img src="/assets/images/faces/face28.png" alt="image">
+                <img src="{{asset('storage/images/'.Auth::user()->image)}}" alt="image">
               </div>
               <div class="sidebar-profile-text">
                 <p class="mb-1">{{Auth::user()->name}}</p>
               </div>
-            </div>
+            </div> --}}
+            <a href="/logout" class="nav-link"><i class="mdi mdi-logout menu-icon"></i>
+              <span class="menu-title">Log Out</span></a>
           </div>
           <!-- <div class="badge badge-danger">3</div> -->
         </div>
@@ -171,8 +203,8 @@
     </li>
     <li class="nav-item sidebar-user-actions">
       <div class="sidebar-user-menu">
-        <a href="/logout" class="nav-link"><i class="mdi mdi-logout menu-icon"></i>
-          <span class="menu-title">Log Out</span></a>
+        {{-- <a href="/logout" class="nav-link"><i class="mdi mdi-logout menu-icon"></i>
+          <span class="menu-title">Log Out</span></a> --}}
       </div>
     </li>
   </ul>

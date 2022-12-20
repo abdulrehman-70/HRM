@@ -66,7 +66,6 @@ class UserController extends Controller
             'leave_Type'=>$leaveType,
             'from'=>'From: '.'('.$data['start_date'].' To:'.$data['end_date'].')',
             'body' => $data['reason']
-
         ];
 
         \Mail::to('abdul1rehmanashraf15@gmail.com')->send(new \App\Mail\sendLeaveMailToAdmin($details));

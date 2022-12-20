@@ -207,9 +207,9 @@ Route::group(['middleware' => 'user'], function () {
 
     Route::get('/employee/tasks/{status_name}/',function($status_name){
         $taskStatuses = TaskStatus::all();
-        $taskStatusID = TaskStatus::where('name',$status_name)->first();
+        $taskStatusName = TaskStatus::where('name',$status_name)->first();
         $user = User::where('id',Auth::user()->id)->first();
-        $tasks = $user->tasks->where("task_status_id",$taskStatusID->id);   
+        $tasks = $user->tasks->where("task_status_id",$taskStatusName->id);   
         return view('userTaskDashboard',['tasks'=>$tasks,'taskStatuses'=>$taskStatuses]);
     });
     Route::post('/update/task/status/',[TaskController::class,'updateStatus']);
@@ -293,9 +293,10 @@ Route::get('/project/form',function(){
 });
 Route::post('/add/project/form/',[ProjectController::class,'create']);
 
-//Tasks
-Route::get('/tasks/',function(){
-    $tasks = Task::with('project','team','team_user','task_status')->get();
+//TASKS
+Route::get('/tasks/{id}',function($id){
+    
+    $tasks = Task::where('project_id',$id)->with('project','team','team_user','task_status')->get();
     return view('task',['tasks'=>$tasks]);
 });
 Route::get('/task/form/',function(){

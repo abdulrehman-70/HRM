@@ -64,7 +64,7 @@
                             <td>{{ $project->name }}</td>
                             <td>{{ $project->description }}</td>
                           <td>{{ $project->client->name }}</td>
-                          <td> <a href="/tasks/"><button style="background:none;border:none" type="submit">
+                        <td> <a href="/tasks/{{ $project->id }}"><button style="background:none;border:none" type="submit">
                             <i class="bi bi-eye-fill ml-2" style="color:rgb(27, 216, 27)"></i>
                          </button></a></td>
                         </tr>

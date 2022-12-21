@@ -9,6 +9,7 @@ use App\Models\Interview;
 use Illuminate\Support\Facades\Mail;
 use App\Http\Requests\InterviewFormRequest;
 use Illuminate\Foundation\Auth\User;
+use Carbon\Carbon;
 
 class InterviewController extends Controller
 {
@@ -16,14 +17,22 @@ class InterviewController extends Controller
     {
         $data = $request->all();
         $interview = Interview::create($data);
-       
+        // $date = Carbon\Carbon::parse( $request->date )->format('d-M-Y  g:i A' ) ;
         $details = [
             'title' => 'Interview Invite',
             'candidate_name'=>$request->candidate_name,
             'body' => 'Below is the invite link:',
-            'meeting_link'=>$request->meeting_link
+            'meeting_link'=>$request->meeting_link,
+            'Scheduled_Time'=>$request->date
+        ];
+        $mailDetails = [
+            'title' => 'Scheduled Interview',
+            'body' => 'Below is the invite link:',
+            'meeting_link'=>$request->meeting_link,
+            'Scheduled_Time'=>$request->date
         ];
         \Mail::to($request->candidate_email)->send(new \App\Mail\sendMailToCandidate($details));
+        \Mail::to($request->employer_email)->send(new \App\Mail\sendMailToEmployer($mailDetails));
         
         return redirect('/interview/Index/')->with(['success'=>'Success!!']);
     }

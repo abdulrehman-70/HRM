@@ -21,4 +21,17 @@ class ClientController extends Controller
         $data->delete();
         return redirect('/clients/')->with(['success'=>'Client Deleted!']);
     }
+
+    public function editClient($id)
+    {
+        $data = Client::where('id',$id)->first();
+        return view('clientEdit',['data'=>$data]);
+    }
+    public function updateClient(ClientRequest $request, $id)
+    {
+        $data = $request->all();
+        unset($data['_token']);
+        Client::where('id',$id)->update($data);
+        return redirect('/clients/')->with(['success'=>'Client Updated!']);
+    }
 }

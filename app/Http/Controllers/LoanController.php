@@ -30,7 +30,7 @@ class LoanController extends Controller
             $user->loan_amount = $user->loan_amount + $request->total_amount;
             $user->save();
         }
-        return redirect('/admin/loan/requests')->with(['success'=>'Request successfull!']);
+        return redirect('/admin/loan')->with(['success'=>'Request successfull!']);
     }
 
     public function deleteLoan($id)

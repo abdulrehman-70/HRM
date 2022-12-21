@@ -281,6 +281,8 @@ Route::get('/client/form',function(){
 });
 Route::post('/add/client/form/',[ClientController::class,'create']);
 Route::post('/client/delete/{id}',[ClientController::class,'delete']);
+Route::get('/client/edit/{id}',[ClientController::class,'editClient']);
+Route::post('/update/client/{id}',[ClientController::class,'updateClient']);
 
 //Projects
 Route::get('/projects/',function(){
@@ -292,6 +294,8 @@ Route::get('/project/form',function(){
     return view('projectForm',['clients'=>$clients]);
 });
 Route::post('/add/project/form/',[ProjectController::class,'create']);
+Route::get('/project/edit/{id}',[ProjectController::class,'editProject']);
+
 
 //TASKS
 Route::get('/tasks/{id}',function($id){

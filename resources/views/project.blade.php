@@ -54,6 +54,7 @@
                           <th scope="col">Project Title</th>
                           <th scope="col">Description</th>
                           <th scope="col">Client Name</th>
+                          <th scope="col">Action</th>
                           <th scope="col">Tasks</th>
                         </tr>
                       </thead>
@@ -63,8 +64,9 @@
                             <td>{{ $key+1 }}</td>
                             <td>{{ $project->name }}</td>
                             <td>{{ $project->description }}</td>
-                          <td>{{ $project->client->name }}</td>
-                        <td> <a href="/tasks/{{ $project->id }}"><button style="background:none;border:none" type="submit">
+                            <td>{{ $project->client->name }}</td>
+                            <td><a href="/project/edit/{{$project->id}}"><i class="bi bi-pencil-fill ml-2" style="color:rgb(27, 216, 27)"></i></a></td>
+                            <td> <a href="/tasks/{{ $project->id }}"><button style="background:none;border:none" type="submit">
                             <i class="bi bi-eye-fill ml-2" style="color:rgb(27, 216, 27)"></i>
                          </button></a></td>
                         </tr>

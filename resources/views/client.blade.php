@@ -61,9 +61,9 @@
                                 <td>{{ $key+1 }}</td>
                                 <td>{{ $client->name }}</td>
                                 <td>    <div class="d-flex justify-content-center">
+                                  <a href="/client/edit/{{$client->id}}"><i class="bi bi-pencil-fill ml-2" style="color:rgb(27, 216, 27)"></i></a>
                                   <form  method="POST" action="/client/delete/{{$client->id}}">
                                       @csrf
-                                      {{-- <input type="hidden" name="user_id" value="{{ $loan->user_id }}"> --}}
                                     <button style="background:none;border:none" type="submit">
                                       <i class="bi bi-archive-fill ml-2" style="color:rgb(230, 45, 45)"></i>
                                    </button>

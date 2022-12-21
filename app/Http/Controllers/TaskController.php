@@ -39,7 +39,6 @@ class TaskController extends Controller
         return redirect('/employee/tasks')->with(['error'=>'This task is closed']);
        }
        $task->task_status_id = $request->modalTask;
-       
        $task->date = Carbon::now()->format('Y-m-d H:i:s');
        $task->save();
        return redirect('/employee/tasks/Todo')->with(['success'=>'Success!!']);

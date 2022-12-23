@@ -77,6 +77,7 @@
 
         var calendar = new FullCalendar.Calendar(calendarEl, {
             initialView: 'listWeek',
+            displayEventEnd : true,
             events: result,
 
          });

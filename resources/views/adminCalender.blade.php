@@ -50,7 +50,7 @@
 
         ]
         result = [...result, ...weArr];
-
+            console.log(result)
 
         var calendar = new FullCalendar.Calendar(calendarEl, {
             initialView: 'listWeek',

@@ -55,6 +55,7 @@
         var calendar = new FullCalendar.Calendar(calendarEl, {
             initialView: 'listWeek',
             // initialView: 'dayGridMonth',
+            displayEventEnd : true,
             events: result,
 
          });

@@ -73,7 +73,7 @@
                                   </div>
                             <input type="hidden" id="user_id" name="user_id">
                             <button type="submit" class="btn btn-primary mr-2 download" style="background-color:
-                            rgb(115, 193, 230);border:1px solid  rgb(115, 193, 230)" data-id="salary_slip" >Generate</button>
+                            rgb(115, 193, 230);border:1px solid  rgb(115, 193, 230)" data-id="salary_slip" >Save</button>
                         </form>
                     </div>
                   </div>

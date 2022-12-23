@@ -26,7 +26,7 @@
                             </div>
                         </div>
                         <button type="submit" class="btn btn-primary mr-2" style="background-color:
-                        rgb(115, 193, 230);border:1px solid  rgb(115, 193, 230) ">Update</button>
+                        rgb(115, 193, 230);border:1px solid  rgb(115, 193, 230) ">Save</button>
                         {{-- <button class="btn btn-light">Cancel</button> --}}
                       </form>
                     </div>

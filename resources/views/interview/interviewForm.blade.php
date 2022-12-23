@@ -13,7 +13,7 @@
                         
 
                       <h3 class="card-description">Schedule Interview</h3>
-                      <form class="forms-sample" method="POST" action="/add/interview/form/" enctype="multipart/form-data">
+                      <form class="forms-sample" method="POST" action="/add/interview/form" enctype="multipart/form-data">
                         @csrf
                         <div class="row">
                             <div class="col-6">

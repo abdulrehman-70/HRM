@@ -44,7 +44,7 @@ Route::post('/login',[LoginController::class,'login']);
 Route::group(['middleware' => 'auth'], function () {
 
     Route::get('/admin/dashboard', function(){
-        $users = User::all()->where('name','!=','admin');
+        $users = User::all()->where('name','!=','admin1');
         foreach($users as $user){
             $todayAttendance = Attendance::whereDate('created_at', Carbon::today())->where('user_id',$user->id)->first();
             $user['today_attendance'] = $todayAttendance;
@@ -268,8 +268,8 @@ Route::get('/interview/form/',function(){
     $statuses = InterviewStatus::all();
     return view('interview.interviewForm',['designations'=>$designations,'statuses'=>$statuses]);
 });
-Route::post('/add/interview/form/',[InterviewController::class,'createInterview']);
-Route::post('/update/interview/status/',[InterviewController::class,'updateStatus']);
+Route::post('/add/interview/form',[InterviewController::class,'createInterview']);
+Route::post('/update/interview/status',[InterviewController::class,'updateStatus']);
 
 //Clients
 Route::get('/clients/',function(){
@@ -279,7 +279,7 @@ Route::get('/clients/',function(){
 Route::get('/client/form',function(){
     return view('clientForm');
 });
-Route::post('/add/client/form/',[ClientController::class,'create']);
+Route::post('/add/client/form',[ClientController::class,'create']);
 Route::post('/client/delete/{id}',[ClientController::class,'delete']);
 Route::get('/client/edit/{id}',[ClientController::class,'editClient']);
 Route::post('/update/client/{id}',[ClientController::class,'updateClient']);
@@ -293,9 +293,9 @@ Route::get('/project/form',function(){
     $clients = Client::all();
     return view('projectForm',['clients'=>$clients]);
 });
-Route::post('/add/project/form/',[ProjectController::class,'create']);
+Route::post('/add/project/form',[ProjectController::class,'create']);
 Route::get('/project/edit/{id}',[ProjectController::class,'editProject']);
-
+Route::post('/update/project/form/{id}',[ProjectController::class,'updateProject']);
 
 //TASKS
 Route::get('/tasks/{id}',function($id){
@@ -309,7 +309,7 @@ Route::get('/task/form/',function(){
     $statuses = TaskStatus::all();
     return view('taskForm',['projects'=>$projects,'teams'=>$teams,'statuses'=>$statuses]);
 });
-Route::post('/add/task/form/',[TaskController::class,'create']);
+Route::post('/add/task/form',[TaskController::class,'create']);
 
 Route::get('/task/{id}/edit',function($id){
     $task = Task::where('id',$id)->first();

@@ -12,7 +12,7 @@
                         
 
                       <h3 class="card-description">Create Task</h3>
-                      <form class="forms-sample" method="POST" action="/add/task/form/" enctype="multipart/form-data">
+                      <form class="forms-sample" method="POST" action="/add/task/form" enctype="multipart/form-data">
                         @csrf
                         <div class="row">
                             <div class="col-6">

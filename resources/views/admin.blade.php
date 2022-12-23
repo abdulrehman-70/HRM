@@ -45,8 +45,8 @@
                         <tr>
                           <th scope="col">#</th>
                           <th scope="col">Name</th>
-                          <th scope="col">Start Time</th>
-                          <th scope="col">End Time</th>
+                          <th scope="col">Check-In</th>
+                          <th scope="col">Check-Out</th>
                         </tr>
                       </thead>
                       <tbody>
@@ -54,8 +54,9 @@
                           @foreach ($users as $key=>$user)
                           <th scope="row"> {{$key+1}} </th>
                           <td><a href="/calendar-event/{{$user->id}}"> {{$user->name}} </a> </td>
-                          <td>{{@$user['today_attendance']['start_time']}}</td>
-                          <td>{{@$user['today_attendance']['end_time']}}</td>
+                          <td>{{ Carbon\Carbon::parse( @$user['today_attendance']['start_time'] )->format('d-M-Y  g:i A' ) }}</td>
+                          <td>{{ Carbon\Carbon::parse( @$user['today_attendance']['end_time'] )->format('d-M-Y  g:i A' ) }}</td>
+                          
                         </tr>
                    @endforeach
                       </tbody>

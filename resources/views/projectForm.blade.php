@@ -12,7 +12,7 @@
                         
 
                       <h3 class="card-description">Add Project</h3>
-                      <form class="forms-sample" method="POST" action="/add/project/form/" enctype="multipart/form-data">
+                      <form class="forms-sample" method="POST" action="/add/project/form" enctype="multipart/form-data">
                         @csrf
                         <div class="row">
                             <div class="col-6">
@@ -42,7 +42,7 @@
                             </div>
                         </div>
                         <button type="submit" class="btn btn-primary mr-2" style="background-color:
-                        rgb(115, 193, 230);border:1px solid  rgb(115, 193, 230) ">Submit</button>
+                        rgb(115, 193, 230);border:1px solid  rgb(115, 193, 230) ">Save</button>
                         {{-- <button class="btn btn-light">Cancel</button> --}}
                       </form>
                     </div>

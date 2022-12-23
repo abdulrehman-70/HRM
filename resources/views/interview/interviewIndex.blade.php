@@ -110,7 +110,7 @@
                             </div>
                             <div class="modal-body">
                                 <div class="form-group">
-                                    <form method="POST" action="/update/interview/status/">
+                                    <form method="POST" action="/update/interview/status">
                                         @csrf
                                         <input type="hidden" id="myId" name="hiddenInterviewID" value="">
                                           <div class="dropdown bootstrap-select dropdown ">

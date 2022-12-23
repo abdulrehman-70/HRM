@@ -49,7 +49,7 @@
         var result = user.map(person => {
             return {
                 title: person.availability==0 ? 'Absent' :'Present' ,
-                start:person.created_at,
+                start:person.start_time,
                 end:person.end_time,
                 color:person.availability==0?'red' : 'green',
             }
@@ -76,15 +76,12 @@
         console.log(result)
 
         var calendar = new FullCalendar.Calendar(calendarEl, {
-            initialView: 'dayGridMonth',
+            initialView: 'listWeek',
             events: result,
 
          });
         calendar.render();
       });
-
-
-
 
       var dt = new Date();
         // if(dt.getDay() == 6 || dt.getDay() == 0)

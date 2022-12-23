@@ -104,8 +104,6 @@
             teamUsers = JSON.parse(teamUsers);
             let user_ids = teamUsers.map((user) => user.user_id)
             console.log(user_ids)
-
-            
             let userOptions = '';
             users.forEach((user) => {
               
@@ -116,8 +114,6 @@
 
 
 
-
-            
       $('.select2-multiple').select2({
           placeholder: "Select",
           allowClear: true   

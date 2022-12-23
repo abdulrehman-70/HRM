@@ -25,7 +25,6 @@ class LoanRequest extends FormRequest
     {
         return [
             'total_amount'=>'required|numeric',
-            'reason'=>'required',
             'employees' => 'required|array',
             'employees.*' => 'exists:users,id',
         ];

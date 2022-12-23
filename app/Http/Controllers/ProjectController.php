@@ -18,7 +18,15 @@ class ProjectController extends Controller
     public function editProject($id)
     {
         $clients = Client::all();
-        $data = Project::where('id',$id)->first();
-        return view('projectEdit',['data'=>$data,'clients'=>$clients]);
+        $project = Project::where('id',$id)->with('client')->first();
+        return view('projectEdit',['project'=>$project,'clients'=>$clients]);
+    }
+    public function updateProject(ProjectRequest $request, $id)
+    {
+        $data = $request->all();
+        // return $data;
+        unset($data['_token']);
+        Project::where('id',$id)->update($data);
+        return redirect('/projects/')->with(['success'=>'Project Updated!']);
     }
 }

@@ -69,7 +69,7 @@ class UserController extends Controller
         ];
 
         \Mail::to('abdul1rehmanashraf15@gmail.com')->send(new \App\Mail\sendLeaveMailToAdmin($details));
-        return redirect('/user/request')->with(['success'=>'Request has been submitted successfully']);
+        return redirect('/user/request/check')->with(['success'=>'Request has been submitted successfully']);
     }
 
 }

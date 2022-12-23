@@ -17,7 +17,7 @@
                  <ul class="nav nav-tabs" id="myTab" role="tablist">
                     <li class="nav-item">
                       <a class="nav-link active" id="home-tab" data-toggle="tab" href="#home" role="tab" aria-controls="home"
-                      aria-selected="true">All</a>
+                      aria-selected="true">Pending</a>
                     </li>
                     <li class="nav-item">
                       <a class="nav-link" id="profile-tab" data-toggle="tab" href="#profile" role="tab" aria-controls="profile"
@@ -107,7 +107,7 @@
                                 <th scope="col">Start Date</th>
                                 <th scope="col">End Date</th>
                                 <th scope="col">Status</th>
-                                <th scope="col">Response</th>
+                                <th scope="col">Reason</th>
                               </tr>
                             </thead>
                             <tbody>

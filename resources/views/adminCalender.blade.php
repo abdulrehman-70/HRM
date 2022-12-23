@@ -31,9 +31,8 @@
 
         var result = attendances.map(person => {
             return {
-                title: person.availability==0 ? person.user.name +'-'+'Absent'
-                :person.user.name+'-'+'Present' ,
-                start:person.start_time ? person.created_at :person.date,
+                title: person.availability==0 ? person.user.name +'-'+'Absent' : person.user.name+'-'+'Present',
+                start:person.start_time, 
                 end:person.end_time,
                 color:person.availability==0 ?'red' : 'green',
             }
@@ -46,7 +45,7 @@
                 color: "red",
                 overLap: false,
                 allDay: true,
-                title:'Off',
+                title:'Weekend OFF',
             }
 
         ]
@@ -54,7 +53,8 @@
 
 
         var calendar = new FullCalendar.Calendar(calendarEl, {
-            initialView: 'dayGridMonth',
+            initialView: 'listWeek',
+            // initialView: 'dayGridMonth',
             events: result,
 
          });
